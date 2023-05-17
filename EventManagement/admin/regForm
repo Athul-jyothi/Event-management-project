@@ -1,0 +1,123 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Reg Page</title>
+  <style type="text/css">
+    form {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function validateForm() {
+      var name = document.forms["registerForm"]["name"].value;
+      var phone = document.forms["registerForm"]["phone"].value;
+      var email = document.forms["registerForm"]["email"].value;
+      var password = document.forms["registerForm"]["password"].value;
+      var batch = document.forms["registerForm"]["batch"].value;
+      
+      // Check if name is not empty
+      if (name == "") {
+        alert("Name must be filled out");
+        return false;
+      }
+      
+      // Check if phone is not empty and is a valid number
+      if (phone == "" || isNaN(phone) || phone.length < 10 || phone.length > 12) {
+        alert("Phone must be filled out and contain only numbers");
+        return false;
+      }
+      
+      // Check if email is not empty and is a valid email address
+      if (email == "" || !email.includes("@") || !email.includes(".")) {
+        alert("Email must be filled out and be a valid email address");
+        return false;
+      }
+      
+      // Check if password is not empty
+      if (password == "") {
+        alert("Password must be filled out");
+        return false;
+      }
+      
+      // Check if batch is selected
+      if (batch == "") {
+        alert("Batch must be selected");
+        return false;
+      }
+      
+      return true;
+    }
+  </script>
+  
+  
+  <form action="register.php" method="post" name="registerForm" onsubmit="return validateForm()">
+  
+        <h1>Register</h1>
+        <div class="form-group">
+          
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" name="realName" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">RegNo</label>
+          <input type="text" class="form-control" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone:</label>
+          <input type="text" class="form-control" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Email:</label>
+            <input type="text" class="form-control" name="email" required>
+          </div>
+        
+        <div class="form-group">
+            <label for="batch">Batch</label>
+            <select id="batch" name="batch" required>
+              <option value="1">CSE</option>
+              <option value="2">ART & SCIENCE</option>
+              <option value="3">Bio Tech</option>
+            </select>
+          </div>
+        <div class="form-group">
+          <label class="form-label">Password:</label>
+          <input type="password" class="form-control" name="password" required>
+        </div>
+        <input type="submit" value="Submit" class="submit-btn">
+      </form>
+</body>
+</html>
+     
